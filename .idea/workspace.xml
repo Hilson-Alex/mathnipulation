@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4810bc9-4b91-4709-a882-425d0aa3af92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/matemathics/document/program/project/ComplexNum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/matemathics/document/project/java/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/matemathics/document/project/java/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/matemathics/document/project/java/math/algebra/Matrix.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/matemathics/document/project/java/math/algebra/Matrix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/document/project/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/project/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/document/project/java/math/algebra/ComplexNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/project/java/math/algebra/ComplexNum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/document/project/java/math/algebra/Matrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/document/project/java/math/algebra/Matrix.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,7 +81,7 @@
       <workItem from="1552939705028" duration="3743000" />
       <workItem from="1553478053170" duration="576000" />
       <workItem from="1553638641339" duration="2020000" />
-      <workItem from="1579215740201" duration="9702000" />
+      <workItem from="1579215740201" duration="13087000" />
     </task>
     <servers />
   </component>
