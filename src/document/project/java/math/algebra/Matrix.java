@@ -4,12 +4,12 @@ package document.project.java.math.algebra;
  * A class made to manipulate matrices. The class allow to
  * wrap, transpose and exchange rows and columns.
  *
- * Every manipulation function work with generics. It means that its
- * parameters have to be Classes or Interfaces. To use it with primitive
- * data types you must use the wrap functions.
+ * Every manipulation function work  parameters have to be Classes
+ * or Interfaces. To use it with primitive  data types you must use
+ * the wrap functions.
  *
  * @author Hilson Alexandre Wojcikiewicz Junior
- * @version 0.2.0
+ * @version 0.4.0
  */
 public class Matrix {
 
@@ -128,6 +128,12 @@ public class Matrix {
         return transposed;
     }
 
+    /**
+     * Copy a matrix.
+     * @param matrix the matrix to be copied.
+     * @param <E> The matrix Type.
+     * @return A copy of the matrix.
+     */
     public static <E> E[][] copyMatrix(E[][] matrix){
         E[][] copy = matrix.clone();
         for (int i = 0; i < matrix.length; i++){
@@ -136,7 +142,18 @@ public class Matrix {
         return copy;
     }
 
-    public static <E> E[][] exchangeRow (E[][] matrix, int line1, int line2){
+    /**
+     * Switch two rows in a matrix.
+     * @param matrix the matrix which the rows will be
+     *               switched.
+     * @param line1 the index of an row that will be
+     *              switched.
+     * @param line2 the index of an row that will be
+     *              switched.
+     * @param <E> The Matrix type.
+     * @return A matrix with the two rows switched.
+     */
+    public static <E> E[][] switchRow (E[][] matrix, int line1, int line2){
         new Matrix().validateRegularMatrix(matrix);
         E[][] exchanged = copyMatrix(matrix);
         exchanged[line1] = matrix[line2].clone();
@@ -144,7 +161,18 @@ public class Matrix {
         return exchanged;
     }
 
-    public static <E> E[][] exchangeColumn (E[][] matrix, int col1, int col2){
+    /**
+     * Switch two columns in a matrix.
+     * @param matrix the matrix which the columns will be
+     *               switched.
+     * @param col1 the index of an column that will be
+     *             switched.
+     * @param col2 the index of an column that will be
+     *             switched.
+     * @param <E> The matrix type.
+     * @return A matrix with the two columns switched.
+     */
+    public static <E> E[][] switchColumn (E[][] matrix, int col1, int col2){
         E[][] exchanged = copyMatrix(matrix);
         for (int i = 0; i < matrix.length; i++) {
             exchanged[i][col1] = matrix[i][col2];
@@ -153,8 +181,20 @@ public class Matrix {
         return exchanged;
     }
 
+    // numeric operations
+
+    //todo crate triangulate methods
+
+    //todo create a determinant calculator method
+
     //private functions
 
+    /**
+     * Validate if a matrix have rows with regular lengths.
+     * (all rows have the same length)
+     * @param matrix the matrix to be validated.
+     * @param <E> the matrix type.
+     */
     private <E> void validateRegularMatrix (E[][] matrix){
         int length = matrix[0].length;
         for (int i = 1; i < matrix.length; i++){
@@ -164,6 +204,12 @@ public class Matrix {
         }
     }
 
+    /**
+     * Validate if the rows and the columns of a matrix
+     * have the same length.
+     * @param matrix the matrix to be validated.
+     * @param <E> the matrix type.
+     */
     private <E> void validateSquareMatrix (E[][] matrix) {
         validateRegularMatrix(matrix);
         int rows = matrix.length;
