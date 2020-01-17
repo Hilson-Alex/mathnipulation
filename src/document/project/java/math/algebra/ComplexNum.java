@@ -3,21 +3,23 @@ package document.project.java.math.algebra;
 import java.util.Objects;
 
 /**
- * A Class made to store, represent and handle complex numbers.
+ * A Class made to store, represent and handle complex numbers
+ * with basic operations.
  *
  * @author Hilson Alexandre Wojcikiewicz Junior
+ * @version 1.0.1
  */
 public final class ComplexNum {
 
     /**
      * the part of the complex number that belongs to the real numbers set.
      */
-    private double a;
+    private double real;
 
     /**
      * the real number that represents the imaginary part of the complex number.
      */
-    private double b;
+    private double imaginary;
 
     /**
      * the imaginary unity exponent.
@@ -26,44 +28,44 @@ public final class ComplexNum {
 
     /**
      * The most complete constructor to store a complex number.
-     * @param a the real part of the complex number;
-     * @param b the imaginary part of the complex number;
+     * @param real the real part of the complex number;
+     * @param imaginary the imaginary part of the complex number;
      * @param exp the imaginary unity exponent.
      */
-    public ComplexNum(double a, double b, int exp){
+    public ComplexNum(double real, double imaginary, int exp){
         this.exp = exp;
-        this.a = a;
-        this.b = b;
+        this.real = real;
+        this.imaginary = imaginary;
         simplify();
     }
 
     /**
      * The constructor for pure imaginary numbers
      * (the real part (a) == 0).
-     * @param b the imaginary number;
+     * @param imaginary the imaginary number;
      * @param exp the imaginary unity exponent.
      */
-    public ComplexNum(double b, int exp){
-        this(0, b, exp);
+    public ComplexNum(double imaginary, int exp){
+        this(0, imaginary, exp);
     }
 
     /**
      * Initializes a Complex Number with the imaginary
      * unity exponent == 1.
-     * @param a the real part of the complex number;
-     * @param b the imaginary part of the complex number.
+     * @param real the real part of the complex number;
+     * @param imaginary the imaginary part of the complex number.
      */
-    public ComplexNum(double a, double b){
-        this(a, b, 1);
+    public ComplexNum(double real, double imaginary){
+        this(real, imaginary, 1);
     }
 
     /**
      * Initializes a pure imaginary number
      * with the exponent == 1.
-     * @param b the imaginary number.
+     * @param imaginary the imaginary number.
      */
-    public ComplexNum (double b){
-        this(b, 1);
+    public ComplexNum (double imaginary){
+        this(imaginary, 1);
     }
 
     /**
@@ -83,7 +85,7 @@ public final class ComplexNum {
      */
     public ComplexNum add (ComplexNum comp){
         int exp = (this.exp > comp.getExp()) ? this.exp : comp.getExp();
-        return new ComplexNum(a + comp.getReal(), b + comp.getImaginary(), exp);
+        return new ComplexNum(real + comp.getReal(), imaginary + comp.getImaginary(), exp);
     }
 
     /**
@@ -93,7 +95,7 @@ public final class ComplexNum {
      */
     public ComplexNum minus (ComplexNum comp){
         int exp = (this.exp > comp.getExp()) ? this.exp : comp.getExp();
-        return new ComplexNum(a - comp.getReal(), b - comp.getImaginary(), exp);
+        return new ComplexNum(real - comp.getReal(), imaginary - comp.getImaginary(), exp);
     }
 
     /**
@@ -103,9 +105,9 @@ public final class ComplexNum {
      */
     public ComplexNum times (ComplexNum comp){
         ComplexNum[] comps = new ComplexNum[3];
-        comps[0] = new ComplexNum(a * comp.getReal(), a * comp.getImaginary(), comp.getExp());
-        comps[1] = new ComplexNum(b * comp.getReal(), exp);
-        comps[2] = new ComplexNum(b * comp.getImaginary(), exp + comp.getExp());
+        comps[0] = new ComplexNum(real * comp.getReal(), real * comp.getImaginary(), comp.getExp());
+        comps[1] = new ComplexNum(imaginary * comp.getReal(), exp);
+        comps[2] = new ComplexNum(imaginary * comp.getImaginary(), exp + comp.getExp());
         return comps[0].add(comps[1].add(comps[2]));
     }
 
@@ -130,7 +132,7 @@ public final class ComplexNum {
      * @return the modulus of the complex number.
      */
     public double modulus (){
-        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+        return Math.sqrt(Math.pow(real, 2) + Math.pow(imaginary, 2));
     }
 
     /**
@@ -138,7 +140,7 @@ public final class ComplexNum {
      * @return the norm of the complex number.
      */
     public double norm (){
-        return Math.pow(a, 2) + Math.pow(b, 2);
+        return Math.pow(real, 2) + Math.pow(imaginary, 2);
     }
 
     /**
@@ -146,7 +148,7 @@ public final class ComplexNum {
      * @return the conjugate of the complex number.
      */
     public ComplexNum conjugate (){
-        return new ComplexNum(a, -b, exp);
+        return new ComplexNum(real, -imaginary, exp);
     }
 
     /**
@@ -154,7 +156,7 @@ public final class ComplexNum {
      * @return the opposite of the complex number.
      */
     public ComplexNum opposite (){
-        return new ComplexNum(-a, -b, exp);
+        return new ComplexNum(-real, -imaginary, exp);
     }
 
     /**
@@ -163,7 +165,7 @@ public final class ComplexNum {
      * @return the real part of the complex number.
      */
     public double getReal () {
-        return a;
+        return real;
     }
 
     /**
@@ -172,7 +174,7 @@ public final class ComplexNum {
      * @return the imaginary part of the complex number.
      */
     public double getImaginary(){
-        return b;
+        return imaginary;
     }
 
     /**
@@ -189,13 +191,13 @@ public final class ComplexNum {
      * @return true if the complex number is a real number
      */
     public boolean isReal () {
-        return b == 0;
+        return imaginary == 0;
     }
 
     @Override
     public String toString() {
-        String coef = ((b < 0 ) ? " " + b : " +" + b);
-        return (exp == 0) ? String.valueOf(a) : a + coef + " i";
+        String coef = ((imaginary < 0 ) ? " " + imaginary : " +" + imaginary);
+        return (exp == 0) ? String.valueOf(real) : real + coef + " i";
     }
 
     @Override
@@ -208,21 +210,21 @@ public final class ComplexNum {
 
     @Override
     public int hashCode() {
-        return Objects.hash(a, b, exp);
+        return Objects.hash(real, imaginary, exp);
     }
 
     /**
      * Simplifies a complex number to its very reduced form.
      */
     private void simplify(){
-        b = (Math.abs(exp % 4) < 2) ? b : -b;
-        exp = (b == 0) ? 0 : exp % 2;
+        imaginary = (Math.abs(exp % 4) < 2) ? imaginary : -imaginary;
+        exp = (imaginary == 0) ? 0 : exp % 2;
         if(exp == 0){
-            a = a+b;
-            b = 0;
+            real = real + imaginary;
+            imaginary = 0;
         }
         if( exp < 0){
-            b = -b;
+            imaginary = -imaginary;
             exp = - exp;
         }
     }
