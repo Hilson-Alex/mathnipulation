@@ -1,8 +1,37 @@
 package document.project.java.math.algebra;
 
+/**
+ * A class made to manipulate matrices. The class allow to
+ * wrap, transpose and exchange rows and columns.
+ *
+ * Every manipulation function work with generics. It means that its
+ * parameters have to be Classes or Interfaces. To use it with primitive
+ * data types you must use the wrap functions.
+ *
+ * @author Hilson Alexandre Wojcikiewicz Junior
+ * @version 0.2.0
+ */
 public class Matrix {
 
-    public static Integer[][] wrap (int[][] matrix){
+    //wrap functions
+
+    /**
+     * Wrap a primitive data type matrix to a Wrapper Class matrix.
+     * @param matrix the primitive data type matrix to be wrapped.
+     * @return an wrapped matrix.
+     */
+    public static Short[][]     wrap (short[][] matrix){
+        Short[][] wrapped = new Short[matrix.length][];
+        for (int i = 0; i < matrix.length; i++){
+            wrapped[i] = new Short[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; j ++){
+                wrapped[i][j] = matrix[i][j];
+            }
+        }
+        return wrapped;
+    }
+
+    public static Integer[][]   wrap (int[][] matrix){
         Integer[][] wrapped = new Integer[matrix.length][];
         for (int i = 0; i < matrix.length; i++){
             wrapped[i] = new Integer[matrix[i].length];
@@ -13,7 +42,29 @@ public class Matrix {
         return wrapped;
     }
 
-    public static Double[][] wrap (double[][] matrix){
+    public static Long[][]      wrap (long[][] matrix){
+        Long[][] wrapped = new Long[matrix.length][];
+        for (int i = 0; i < matrix.length; i++){
+            wrapped[i] = new Long[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; j ++){
+                wrapped[i][j] = matrix[i][j];
+            }
+        }
+        return wrapped;
+    }
+
+    public static Float[][]     wrap (float[][] matrix){
+        Float[][] wrapped = new Float[matrix.length][];
+        for (int i = 0; i < matrix.length; i++){
+            wrapped[i] = new Float[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; j ++){
+                wrapped[i][j] = matrix[i][j];
+            }
+        }
+        return wrapped;
+    }
+
+    public static Double[][]    wrap (double[][] matrix){
         Double[][] wrapped = new Double[matrix.length][];
         for (int i = 0; i < matrix.length; i++){
             wrapped[i] = new Double[matrix[i].length];
@@ -35,7 +86,7 @@ public class Matrix {
         return wrapped;
     }
 
-    public static Boolean[][] wrap (boolean[][] matrix){
+    public static Boolean[][]   wrap (boolean[][] matrix){
         Boolean[][] wrapped = new Boolean[matrix.length][];
         for (int i = 0; i < matrix.length; i++){
             wrapped[i] = new Boolean[matrix[i].length];
@@ -46,15 +97,32 @@ public class Matrix {
         return wrapped;
     }
 
-    public static <E> E[][] transpose (E[][] matrix){
-        new Matrix().validateSquareMatrix(matrix);
-        E[][] transposed = copyMatrix(matrix);
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+    public static Byte[][]      wrap(byte[][] matrix){
+        Byte[][] wrapped = new Byte[matrix.length][];
+        for (int i = 0; i < matrix.length; i++){
+            wrapped[i] = new Byte[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; j ++){
+                wrapped[i][j] = matrix[i][j];
+            }
+        }
+        return wrapped;
+    }
+
+    // manipulation functions
+
+    /**
+     * Transpose a matrix
+     * @param matrix the matrix to be transposed
+     * @return a transposed matrix
+     */
+    public static Object[][] transpose (Object[][] matrix){
+        new Matrix().validateRegularMatrix(matrix);
+        int cols = matrix.length;
+        int rows = matrix[0].length;
+        Object[][] transposed = new Object[rows][cols];
         for (int i = 0; i < rows; i++){
-            for (int j = i+1; j < cols; j++){
+            for (int j = 0; j < cols; j++){
                 transposed[i][j] = matrix[j][i];
-                transposed[j][i] = matrix[i][j];
             }
         }
         return transposed;
@@ -68,7 +136,7 @@ public class Matrix {
         return copy;
     }
 
-    public static <E> E[][] exchangeLine (E[][] matrix, int line1, int line2){
+    public static <E> E[][] exchangeRow (E[][] matrix, int line1, int line2){
         new Matrix().validateRegularMatrix(matrix);
         E[][] exchanged = copyMatrix(matrix);
         exchanged[line1] = matrix[line2].clone();
@@ -84,6 +152,8 @@ public class Matrix {
         }
         return exchanged;
     }
+
+    //private functions
 
     private <E> void validateRegularMatrix (E[][] matrix){
         int length = matrix[0].length;
